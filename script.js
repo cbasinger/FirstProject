@@ -1,5 +1,5 @@
-var client_id= "YRYBPL3XX1AQMOAQF3EBE1Z2MWBGYWMH3F5U4XQKWWJ2ZUO3";
-var client_secret= "DAHBINRS4RAPF55R30CJUOXLHHRHS3XISOAI1C35BXAP4IIF";
+//var client_id= "YRYBPL3XX1AQMOAQF3EBE1Z2MWBGYWMH3F5U4XQKWWJ2ZUO3";
+//var client_secret= "DAHBINRS4RAPF55R30CJUOXLHHRHS3XISOAI1C35BXAP4IIF";
 
 var Foursquare = function () {
     /*
@@ -10,8 +10,8 @@ var Foursquare = function () {
     and have its required dependencies be Jquery and apiglobals.js
     */
     var init = function (client_id,client_secret) {
-        clientId = client_id;// Required
-        clientSecret = client_secret;//Required
+        clientId = YRYBPL3XX1AQMOAQF3EBE1Z2MWBGYWMH3F5U4XQKWWJ2ZUO3;// Required
+        clientSecret = DAHBINRS4RAPF55R30CJUOXLHHRHS3XISOAI1C35BXAP4IIF;//Required
         version = getVersionString();
         defaultLngLat = '40.7,-74';
     }
@@ -107,4 +107,4 @@ var Foursquare = function () {
 
     }
 }();
-Foursquare();
+console.log(Foursquare());
