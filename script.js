@@ -1,110 +1,41 @@
-//var client_id= "YRYBPL3XX1AQMOAQF3EBE1Z2MWBGYWMH3F5U4XQKWWJ2ZUO3";
-//var client_secret= "DAHBINRS4RAPF55R30CJUOXLHHRHS3XISOAI1C35BXAP4IIF";
 
-var Foursquare = function () {
-    /*
-    Please register a client/app with foursquare ( https://developer.foursquare.com) 
-    and put the client id and secret in the apiglobals.js
 
-    NOTE: Didn't want to use require for this, but it would be easy to port it
-    and have its required dependencies be Jquery and apiglobals.js
-    */
-    var init = function (client_id,client_secret) {
-        clientId = YRYBPL3XX1AQMOAQF3EBE1Z2MWBGYWMH3F5U4XQKWWJ2ZUO3;// Required
-        clientSecret = DAHBINRS4RAPF55R30CJUOXLHHRHS3XISOAI1C35BXAP4IIF;//Required
-        version = getVersionString();
-        defaultLngLat = '40.7,-74';
-    }
-    /*The Foursquare api changes. Passing a "v" parameter on the call
-      means you are requesting the most recent from ths date. 
-      This creates a version string based on todays date
-    */
-    var getVersionString=function()
-    {
-        // Foursquare wants the format YYYYMMDD
-        var today = new Date()
-        var day = today.getDate().toString();
-        var month = today.getMonth() + 1;
-        month = (month < 10) ? '0' + month.toString() : month.toString();
-        var year = today.getFullYear().toString();
-        var dateString = year + month + day;
-        return(dateString);
-    }
 
+
+var exploreButton = document.getElementById("explore");
+var container = document.getElementById("container");
+var fiveRestaurants = [];
+
+    const clientId = "YRYBPL3XX1AQMOAQF3EBE1Z2MWBGYWMH3F5U4XQKWWJ2ZUO3";// Required
+    const clientSecret = "DAHBINRS4RAPF55R30CJUOXLHHRHS3XISOAI1C35BXAP4IIF";//Required
     var endPoints = {
-        'getVenueDetailById': 'https://api.foursquare.com/v2/venues/',
-        'getVenueCategories': 'https://api.foursquare.com/v2/venues/categories',
-        'getPopularVenues': 'https://api.foursquare.com/v2/venues/explore',
-        'searchVenues': 'https://api.foursquare.com/v2/venues/search',
-        'getTrendingVenues': 'https://api.foursquare.com/v2/venues/trending',
+//         'getVenueDetailById': 'https://api.foursquare.com/v2/venues/',
+//         'getVenueCategories': 'https://api.foursquare.com/v2/venues/categories',
+            'getPopularVenues': 'https://api.foursquare.com/v2/venues/explore',
+            'searchVenues': 'https://api.foursquare.com/v2/venues/search',
+//         'getTrendingVenues': 'https://api.foursquare.com/v2/venues/trending',
+    }
+function inputFunction() {
+    var zipInput= document.getElementById("zipcodeInput").value;
+    axios.get(`https://api.foursquare.com/v2/venues/search?near=${zipInput}&client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=5`)
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
+            // Code for handling errors
     }
 
     
-    var getVenueDetailById = function (venue_id) {
-      
-        var url = endPoints['getVenueDetailById'] + venue_id;
-        return (makeJSONRequest(newUrl));
-    }
-
-
-    var getVenueCategories = function () {
-        var url = endPoints['getVenueCategories'];
-        return (makeJSONRequest(url));
-    }
-
-    /*
-    Please refer to https://developer.foursquare.com/docs/venues/explore for the option parameters that can be sent
-    */
-    var getPopularVenues = function (options) {
     
-        var url = endPoints['getPopularVenues'];
-        if (!options) {
-            options = { 'll': defaultLngLat };
-        }
-      
-        return (makeJSONRequest(url, options));
-    }
-    //https://developer.foursquare.com/docs/venues/search
-    var searchVenues = function (options) {
-        // needs to be sorted
-        var url = endPoints['searchVenues'];
-        if (!options) {
-            options = {'ll':defaultLngLat};
-        }
-        return (makeJSONRequest(url, options));
-    }
-    var getTrendingVenues = function (options) {
-        if (!options) {
-            options = { 'll': defaultLngLat };
-        }
-        var url = endPoints['getTrendingVenues']
-        
-        return (makeJSONRequest(url, options));
-    }
-   
 
-    var makeJSONRequest = function (url, data) {
-        var self = this;
-        if (!data) { data = {} }
-      
-        data.client_id = clientId;
-        data.client_secret = clientSecret;
-        data.v = version;
-       
-        var jqxhr = $.getJSON(url, data);
-        
-        return (jqxhr);
-
+    
+    var getVenueByLocation = function () {
+        axios.get(`${endPoints.getPopularVenues}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=1&ll=40.7243,-74.0018&query=coffee`)
+            .then(function(data) {
+                console.log(data)
+                // Code for handling API response
+            })
+            .catch(function(error) {
+                console.log(error)
+                // Code for handling errors
+        });
     }
-
-    return {
-        // public properties
-        init: init,
-        getTrendingVenues: getTrendingVenues,
-        searchVenues:searchVenues,
-        getPopularVenues: getPopularVenues,
-        getVenueCategories:getVenueCategories
-
-    }
-}();
-console.log(Foursquare());
+    getVenueByLocation();
