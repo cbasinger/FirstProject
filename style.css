@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 .jumbotron {
     color: rgb(255, 255, 255) !important;
     background :linear-gradient( rgb(36, 36, 36), rgb(0, 0, 0));
@@ -7,4 +11,8 @@
 .card {
     margin: .50rem;
     box-shadow: 10px 10px 5px grey;
+}
+
+.jumbotron p {
+    font-size: 50px;
 }
