@@ -5,6 +5,9 @@
 var exploreButton = document.getElementById("explore");
 var container = document.getElementById("container");
 var fiveRestaurants = [];
+var fiveBars = [];
+var fiveParks = [];
+var fiveEvents = [];
 
     const clientId = "YRYBPL3XX1AQMOAQF3EBE1Z2MWBGYWMH3F5U4XQKWWJ2ZUO3";// Required
     const clientSecret = "DAHBINRS4RAPF55R30CJUOXLHHRHS3XISOAI1C35BXAP4IIF";//Required
@@ -44,15 +47,15 @@ function inputFunction() {
     
 
     
-    var getVenueByLocation = function () {
-        axios.get(`${endPoints.getPopularVenues}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=1&ll=40.7243,-74.0018&query=coffee`)
-            .then(function(data) {
-                console.log(data)
+// var getVenueByLocation = function () {
+//        axios.get(`${endPoints.getPopularVenues}?client_id=${clientId}&client_secret=${clientSecret}&v=20180323&limit=1&ll=40.7243,-74.0018&query=coffee`)
+//            .then(function(data) {
+//                console.log(data)
                 // Code for handling API response
-            })
-            .catch(function(error) {
-                console.log(error)
+//            })
+//            .catch(function(error) {
+//                console.log(error)
                 // Code for handling errors
-        });
-    }
-    getVenueByLocation();
+//        });
+//    }
+//    getVenueByLocation();
