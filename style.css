@@ -3,9 +3,12 @@ body {
 }
 
 .jumbotron {
+    padding-top: 20px;
+    padding-bottom: 15px;
     color: rgb(255, 255, 255) !important;
     background :linear-gradient( rgb(36, 36, 36), rgb(0, 0, 0));
     background-attachment: fixed;
+    text-transform: uppercase;
 }
 
 .card {
@@ -15,4 +18,9 @@ body {
 
 .jumbotron p {
     font-size: 50px;
+    text-transform: uppercase;
+}
+
+.navbar {
+    padding: .8rem;
 }
