@@ -3,7 +3,7 @@ const fourSquareClientId = "BCEJY3NTBHJNIUQF5DSI01IRXSDGJMTBBQPSPIK4OFTMCOUM";//
 const fourSquareClientSecret = "O1CAYJY0HSXZ45GATTKELQPTKAQXDWSI5KNW5A4MCEM2NPKF";//Required
 var locationSearchElement = document.getElementById("locationSearch");
 var cardContainer = document.getElementById("cardContainer");
-//var currentLocation = "33.853510, -84.368667";
+var currentLocation = "";
 var fiveRestaurants = [];
 var isFinished = 0;
 
@@ -13,10 +13,9 @@ var createRestaurantCards = function(){
         newCardContainer.className ="card card_"+i+"_div";
         var newCard = document.createElement("div");
         newCard.className = "card";
-        newCard.style = "width: 25rem; height: 30 rem;";
+        newCard.style = "width: 25rem;";
         var newCardImage = document.createElement("img");
         newCardImage.className = "card-img-top";
-        newCardImage.style ="width: 25 rem; height: 30 rem;"
         newCardImage.src = fiveRestaurants[i].photo;
         newCardImage.alt = "...";
         var newCardBody = document.createElement("div");
@@ -38,7 +37,7 @@ var createRestaurantCards = function(){
 
         newCardLink = document.createElement("a");
         newCardLink.className = "card-link";
-        newCardLink.href = fiveRestaurants[i].url;
+        newCardLink.href = fiveRestaurants[1].url;
         newCardLink.target = "_blank";
         newCardLink.innerHTML = "take me there!";
 
@@ -55,12 +54,8 @@ var createRestaurantCards = function(){
 }
 
 
-
-
-
 var getVenueByLocation = function () {
-    var zipcodeInput = document.getElementById("zipInput").value;
-    axios.get(`https://api.foursquare.com/v2/venues/explore?client_id=${fourSquareClientId}&client_secret=${fourSquareClientSecret}&v=20180323&near=${zipcodeInput}&query=restaurant`)
+    axios.get(`https://api.foursquare.com/v2/venues/explore?client_id=${fourSquareClientId}&client_secret=${fourSquareClientSecret}&v=20180323&ll=${currentLocation}&query=restaurant`)
         .then(function(data) {
             var informationPath = data.data.response.groups[0].items;
             var fiveRestaurantIds = [];
@@ -167,23 +162,18 @@ var getVenueByLocation = function () {
         });
 }
 
+
 exploreButton.onclick = function () {
-    //add below code when it is working to type in a location
-    //if(locationSearchElement.value && locationSearch.value !== "" ){
-    //  currentLocation = locationSearchElement.value;
-    // }
+    // add below code when it is working to type in a location
+     if(locationSearchElement.value && locationSearch.value !== "" ){
+       currentLocation = locationSearchElement.value;
+     }
     cardContainer.innerHTML = "";
     getVenueByLocation();
     setTimeout(function(){ 
         createRestaurantCards();
     }, 3000);
 }
-
-
-
-
-
-
 
 $(document).ready(function() {
     $(".card_1").click(function() {

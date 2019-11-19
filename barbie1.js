@@ -13,10 +13,9 @@ var createRestaurantCards = function(){
         newCardContainer.className ="card card_"+i+"_div";
         var newCard = document.createElement("div");
         newCard.className = "card";
-        newCard.style = "width: 25rem; height: 30 rem;";
+        newCard.style = "width: 25rem;";
         var newCardImage = document.createElement("img");
         newCardImage.className = "card-img-top";
-        newCardImage.style ="width: 25 rem; height: 30 rem;"
         newCardImage.src = fiveRestaurants[i].photo;
         newCardImage.alt = "...";
         var newCardBody = document.createElement("div");
@@ -38,7 +37,7 @@ var createRestaurantCards = function(){
 
         newCardLink = document.createElement("a");
         newCardLink.className = "card-link";
-        newCardLink.href = fiveRestaurants[i].url;
+        newCardLink.href = fiveRestaurants[1].url;
         newCardLink.target = "_blank";
         newCardLink.innerHTML = "take me there!";
 
@@ -53,8 +52,6 @@ var createRestaurantCards = function(){
         cardContainer.appendChild(newCardContainer);
     }
 }
-
-
 
 
 
