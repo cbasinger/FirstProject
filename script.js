@@ -7,6 +7,39 @@ var currentLocation = "33.853510, -84.368667";
 var fiveRestaurants = [];
 var isFinished = 0;
 
+
+$(document).ready(function() {
+    $(".card_1").click(function() {
+        $('html,body').animate({
+            scrollTop: $(".card_1_div").offset().top},
+            'slow');
+    });
+
+    $(".card_2").click(function() {
+        $('html,body').animate({
+            scrollTop: $(".card_2_div").offset().top},
+            'slow');
+    });
+
+    $(".card_3").click(function() {
+        $('html,body').animate({
+            scrollTop: $(".card_3_div").offset().top},
+            'slow');
+    });
+
+    $(".card_4").click(function() {
+        $('html,body').animate({
+            scrollTop: $(".card_4_div").offset().top},
+            'slow');
+    });
+
+    $(".card_5").click(function() {
+        $('html,body').animate({
+            scrollTop: $(".card_5_div").offset().top},
+            'slow');
+    });
+})
+
 var createRestaurantCards = function(){
     for (i=0; i<5; i++){
         var newCardContainer = document.createElement("div");
@@ -57,10 +90,12 @@ var createRestaurantCards = function(){
 var getVenueByLocation = function () {
     axios.get(`https://api.foursquare.com/v2/venues/explore?client_id=${fourSquareClientId}&client_secret=${fourSquareClientSecret}&v=20180323&ll=${currentLocation}&query=restaurant`)
         .then(function(data) {
+            console.log('1');
             var informationPath = data.data.response.groups[0].items;
             var fiveRestaurantIds = [];
             for(i=0; i<5; i++) {
                 fiveRestaurantIds.push(informationPath[i].venue.id);
+                console.log(fiveRestaurantIds);
             }
             
             axios.get(`https://api.foursquare.com/v2/venues/` + fiveRestaurantIds[0]+ `?client_id=${fourSquareClientId}&client_secret=${fourSquareClientSecret}&v=20180323`)
@@ -164,6 +199,7 @@ var getVenueByLocation = function () {
 
 
 exploreButton.onclick = function () {
+    console.log('hello');
     // add below code when it is working to type in a location
     // if(locationSearchElement.value && locationSearch.value !== "" ){
     //   currentLocation = locationSearchElement.value;
@@ -174,35 +210,3 @@ exploreButton.onclick = function () {
         createRestaurantCards();
     }, 3000);
 }
-
-$(document).ready(function() {
-    $(".card_1").click(function() {
-        $('html,body').animate({
-            scrollTop: $(".card_1_div").offset().top},
-            'slow');
-    });
-
-    $(".card_2").click(function() {
-        $('html,body').animate({
-            scrollTop: $(".card_2_div").offset().top},
-            'slow');
-    });
-
-    $(".card_3").click(function() {
-        $('html,body').animate({
-            scrollTop: $(".card_3_div").offset().top},
-            'slow');
-    });
-
-    $(".card_4").click(function() {
-        $('html,body').animate({
-            scrollTop: $(".card_4_div").offset().top},
-            'slow');
-    });
-
-    $(".card_5").click(function() {
-        $('html,body').animate({
-            scrollTop: $(".card_5_div").offset().top},
-            'slow');
-    });
-})
