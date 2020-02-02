@@ -165,9 +165,9 @@ var getVenueByLocation = function () {
 
 exploreButton.onclick = function () {
     // add below code when it is working to type in a location
-     if(locationSearchElement.value && locationSearch.value !== "" ){
-       currentLocation = locationSearchElement.value;
-     }
+    if(locationSearchElement.value && locationSearch.value !== "" ){
+        currentLocation = locationSearchElement.value;
+    }
     cardContainer.innerHTML = "";
     getVenueByLocation();
     setTimeout(function(){ 

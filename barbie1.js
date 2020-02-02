@@ -53,8 +53,6 @@ var createRestaurantCards = function(){
     }
 }
 
-
-
 var getVenueByLocation = function () {
     var zipcodeInput = document.getElementById("zipInput").value;
     axios.get(`https://api.foursquare.com/v2/venues/explore?client_id=${fourSquareClientId}&client_secret=${fourSquareClientSecret}&v=20180323&near=${zipcodeInput}&query=restaurant`)
